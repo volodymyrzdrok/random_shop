@@ -1,0 +1,90 @@
+
+  .card-item {
+   max-width: 320px;
+    position: relative;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(156, 155, 155,0.1);
+max-height: 580px;
+    transition: all 0.3s linear;
+    
+    
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .card-item__clip{
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    top: 10px;
+    right:10px;
+  }
+
+  .card-item__icon{
+    display: inline;
+    fill: rgba(156, 155, 155,0.6);
+    transition: all 0.4s linear;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+  }
+  .card-item:hover .card-item__icon{
+    fill: #eabf00;
+  }
+
+  .card-item:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+  .card-item__buy-btn:hover {
+    background-color: #eabf00;
+  }
+
+  
+  .card-item__thumb img {
+    width: 100%;
+  }
+  
+  .card-item__title {
+    position: relative;
+    padding: 0 10px;
+    height: 25px;
+  }
+  .card-item__disription{
+    position: relative;
+    padding: 0 10px;
+    height: 5px;
+    font-size: 12px;
+    margin-bottom: 10px;
+
+  }
+
+  .card-item--favorite:before {
+    position: absolute;
+    background-image: url('./images/pinOpen.png');
+    content: "";
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+    top: -19.5px;
+    right: -12px;
+  }
+  
+  .card-item__price {
+    padding: 5px 0;
+  }
+  
+  .card-item__price .installment {
+    color: #9c9b9b;
+  }
+  
+  .card-item__buy-btn {
+    background-color: #1b1a20;
+    color: #fff;
+    padding: 15px 0;
+    margin-top: 10px;
+    cursor: pointer;
+    
+    transition: background-color 0.29s;
+  }

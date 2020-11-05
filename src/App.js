@@ -1,25 +1,47 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Header from './Components/Header/Header';
+import Main from './Components/Main/Main';
+import Cart from './Components/Cart/Cart';
+import productsData from './db/product.json';
+import { useSelector, useDispatch } from 'react-redux';
+import { addCartToBasket, addNewCartToBasket, removeCart } from './redux/slice';
+const App = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const order = useSelector(state => state.order);
+  const [products, setProducts] = useState(productsData);
 
-function App() {
+  const dispatch = useDispatch();
+  const switchCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
+  const addToCart = id => {
+    const item = products.find(product => product.id === id);
+    const checkCardItem = order.find(orderItem => orderItem.id === id);
+
+    if (checkCardItem) {
+      dispatch(addCartToBasket(id));
+    } else {
+      item.count = 1;
+      dispatch(addNewCartToBasket(item));
+    }
+  };
+
+  const removeFromCart = id => {
+    dispatch(removeCart(id));
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Main products={products} addToCart={addToCart} />
+      <Cart
+        cartStatus={isCartOpen}
+        switchCart={switchCart}
+        removeFromCart={removeFromCart}
+      />
+    </>
   );
-}
+};
 
 export default App;
