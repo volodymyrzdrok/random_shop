@@ -77,3 +77,14 @@
 .amount {
   color: #fff;
 }
+@media screen and (max-width: 575px) {
+
+  .cart-item__thumb {
+    vertical-align: middle;
+    width: 30%;
+    margin-right: 3%;
+  }
+  
+ 
+
+}
