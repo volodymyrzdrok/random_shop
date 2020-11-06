@@ -3,13 +3,12 @@ import './App.css';
 import Header from './Components/Header/Header';
 import Main from './Components/Main/Main';
 import Cart from './Components/Cart/Cart';
-import productsData from './db/product.json';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCartToBasket, addNewCartToBasket, removeCart } from './redux/slice';
 const App = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const order = useSelector(state => state.order);
-  const [products, setProducts] = useState(productsData);
+  const products = useSelector(state => state.productsState);
 
   const dispatch = useDispatch();
   const switchCart = () => {
@@ -23,7 +22,6 @@ const App = () => {
     if (checkCardItem) {
       dispatch(addCartToBasket(id));
     } else {
-      item.count = 1;
       dispatch(addNewCartToBasket(item));
     }
   };

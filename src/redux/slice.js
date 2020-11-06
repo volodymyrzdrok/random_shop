@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import productsData from '../db/product.json';
+
 const orderSlice = createSlice({
   name: 'order',
   initialState: [],
@@ -11,7 +12,10 @@ const orderSlice = createSlice({
           ? { ...orderItem, count: orderItem.count + 1 }
           : orderItem,
       ),
-    addNewCartToBasket: (state, action) => [action.payload, ...state],
+    addNewCartToBasket: (state, action) => [
+      { ...action.payload, count: 1 },
+      ...state,
+    ],
     removeCart: (state, action) =>
       (state = state.filter(cartItem => cartItem.id !== action.payload)),
   },

@@ -5,12 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
 import { changeFilter } from '../../redux/slice';
 import { addFavoriteProduct } from '../../redux/slice';
+import { CSSTransition } from 'react-transition-group';
 
-const CardsColection = ({ addToCart }) => {
+const CardsColection = ({ addToCart, products }) => {
   const dispatch = useDispatch();
   const valueFilter = useSelector(state => state.filter);
   const valueFilterSize = useSelector(state => state.filterSize);
-  const products = useSelector(state => state.productsState);
 
   const favoriteItem = id => {
     const foundItem = products.find(item => item.id === id);
@@ -41,15 +41,24 @@ const CardsColection = ({ addToCart }) => {
           />
         </label>
       </div>
+
       <ul className="card__list">
         {visibleProducts.map(product => (
-          <Card
+          <CSSTransition
+            in={true}
+            appear={true}
+            timeout={800}
+            classNames="card-animation"
+            unmountOnExit
             key={product.id}
-            product={product}
-            favoriteItem={favoriteItem}
-            allProducts={products}
-            addToCart={addToCart}
-          />
+          >
+            <Card
+              product={product}
+              favoriteItem={favoriteItem}
+              allProducts={products}
+              addToCart={addToCart}
+            />
+          </CSSTransition>
         ))}
       </ul>
     </>

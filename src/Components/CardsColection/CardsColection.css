@@ -51,3 +51,15 @@ input{
   }
 }
 
+
+.card-animation-appear {
+  opacity: 0;
+  transform: scale(0.7);
+
+}
+
+.card-animation-appear-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 800ms linear;
+}
